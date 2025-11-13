@@ -1,8 +1,11 @@
 package com.example;
+
 import java.util.List;
+
 public class Lion {
     private final Predator predator;
     private final boolean hasMane;
+
     public Lion(Predator predator, String sex) throws Exception {
         this.predator = predator;
         if ("Самец".equals(sex)) {
@@ -13,12 +16,25 @@ public class Lion {
             throw new Exception("Используйте допустимые значения пола животного — самец или самка");
         }
     }
+
     public int getKittens() {
-        return 1;
+        return getKittens(1);
     }
+
+    public int getKittens(int count) {
+        if (count < 0) {
+            throw new IllegalArgumentException("Количество котят не может быть отрицательным");
+        }
+        if (count > 10) {
+            throw new IllegalArgumentException("Слишком много котят: максимум 10");
+        }
+        return count;
+    }
+
     public boolean doesHaveMane() {
         return hasMane;
     }
+
     public List<String> getFood() throws Exception {
         return predator.eatMeat();
     }

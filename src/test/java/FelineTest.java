@@ -1,24 +1,32 @@
 import com.example.Feline;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import java.util.List;
+
 public class FelineTest {
     private final Feline feline = new Feline();
+
     @Test
-    public void testEatMeat() throws Exception {
+    public void testEatMeat_shouldReturnTypicalCarnivoreDiet() throws Exception {
         List<String> food = feline.eatMeat();
         assertEquals(List.of("Животные", "Птицы", "Рыба"), food);
     }
+
     @Test
-    public void testGetFamily() {
-        assertEquals("Кошачьи", feline.getFamily());
+    public void testGetFamily_shouldReturnFelidaeFamily() {
+        String family = feline.getFamily();
+        assertEquals("Кошачьи", family);
     }
+
     @Test
-    public void testGetKittensDefault() {
-        assertEquals(1, feline.getKittens());
+    public void testGetKittens_withoutParameter_shouldReturnDefaultCount() {
+        int kittens = feline.getKittens();
+        assertEquals(1, kittens);
     }
+
     @Test
-    public void testGetKittensWithParam() {
-        assertEquals(3, feline.getKittens(3));
+    public void testGetKittens_withParameter_shouldReturnSpecifiedCount() {
+        int kittens = feline.getKittens(3);
+        assertEquals(3, kittens);
     }
 }

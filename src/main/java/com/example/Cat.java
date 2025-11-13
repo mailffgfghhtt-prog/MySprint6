@@ -1,15 +1,19 @@
 package com.example;
-import com.example.Predator;
+
 import java.util.List;
+
 public class Cat {
-    private final Predator predator;
-    public Cat(Predator predator) {
-        this.predator = predator;
+    private final Feline feline;
+
+    public Cat(Feline feline) {
+        this.feline = feline;
     }
+
     public String getSound() {
         return "Мяу";
     }
+
     public List<String> getFood() throws Exception {
-        return predator.eatMeat();
+        return feline.eatMeat();
     }
 }
