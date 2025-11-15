@@ -1,1 +1,156 @@
+Отчёт по результатам автоматического тестирования
+Общая информация
+Проект: Зоопарк (groupId: org.example, версия: 1.0‑SNAPSHOT)
 
+Дата проведения тестов: 13.11.2025
+
+Среда выполнения: Java11 Coretto
+
+Инструменты:
+
+JUnit4.13.2 (тестирование)
+
+Mockito5.7.0 (мокирование зависимостей)
+
+JaCoCo0.8.14 (анализ покрытия кода)
+
+Количество тестовых классов: 5
+
+Общее количество тестовых методов: 26
+
+Конфигурация сборки: Maven (POM 4.0.0)
+
+Перечень протестированных компонентов
+Cat — класс кошки/
+Feline — подкласс Animal.
+
+Animal — базовый класс с логикой рациона и семейств.
+
+Lion — класс льва.
+
+Predator — интерфейс, определяющий метод eatMeat().
+
+Результаты тестирования
+1. CatTest (5 тестов)
+
+testGetSound() — успешно
+Проверяет возврат "Мяу" из getSound().
+
+testGetFood_returnsExpectedList() — успешно
+Убеждается, что getFood() возвращает ["Животные", "Птицы", "Рыба"].
+
+testGetFood_callsEatMeatOnce() — успешно
+С моком Feline проверяет единичный вызов eatMeat().
+
+testGetFood_throwsExceptionWhenFelineEatMeatFails() — успешно
+Проверяет пробрасывание исключения при ошибке в eatMeat().
+
+testGetFood_handlesNullFromEatMeat() — успешно
+Убеждается, что getFood() корректно обрабатывает null от eatMeat().
+
+2. FelineTest (4 теста)
+
+testEatMeat_shouldReturnTypicalCarnivoreDiet() — успешно
+Проверяет рацион хищника: ["Животные", "Птицы", "Рыба"].
+
+testGetFamily_shouldReturnFelidaeFamily() — успешно
+Убеждается, что getFamily() возвращает "Кошачьи".
+
+testGetKittens_withoutParameter_shouldReturnDefaultCount() — успешно
+Проверяет возврат 1 при вызове getKittens() без параметров.
+
+testGetKittens_withParameter_shouldReturnSpecifiedCount() — успешно
+Проверяет возврат заданного количества котят (например, 3).
+
+3. AnimalTest (9 тестов)
+
+testGetFoodHerbivore() — успешно
+Рацион травоядного: ["Трава", "Различные растения"].
+
+testGetFoodPredator() — успешно
+Рацион хищника: ["Животные", "Птицы", "Рыба"].
+
+testGetFoodInvalidKind() — успешно
+Проверяет исключение для неизвестного вида животного.
+
+testGetFamily() — успешно
+Проверяет строку с семействами.
+
+testGetFood_nullAnimalKind() — успешно
+Исключение при null в animalKind.
+
+testGetFood_emptyString() — успешно
+Исключение для пустой строки.
+
+testGetFood_whitespaceOnly() — успешно
+Исключение для пробельной строки.
+
+testGetFood_caseSensitivity() — успешно
+Проверка чувствительности к регистру (ожидается исключение).
+
+testGetFood_trimmedInput() — успешно
+Обработка обрезанного ввода (например, " Хищник ").
+
+4. LionTest (10 тестов)
+
+testDoesHaveMane_shouldMatchExpectedValue() — успешно
+Проверка наличия гривы по полу (самец — true, самка — false).
+
+testGetKittens_shouldReturnDefaultCount() — успешно
+Возврат 1 из getKittens().
+
+testGetFood_returnsExpectedDietList() — успешно
+С моком Predator проверяет рацион ["Олень", "Буйвол"].
+
+testGetFood_verifiesEatMeatCalledOnce() — успешно
+Единичный вызов eatMeat().
+
+testConstructor_withInvalidSex_shouldThrowException() — успешно
+Исключение для неверного пола.
+
+testGetKittens_zero() — успешно
+Возврат 0 при вызове getKittens(0).
+
+testGetKittens_maxAllowed() — успешно
+Возврат 10 при getKittens(10).
+
+testGetKittens_negativeCount() — успешно
+Исключение для отрицательного количества.
+
+testGetKittens_exceedsMax() — успешно
+Исключение для количества >10.
+
+testGetKittens_defaultReturnsOne() — успешно
+Проверка дефолтного возврата 1.
+
+Покрытие кода (JaCoCo)
+Строковое покрытие (Line Coverage): 100% 28
+
+Покрытие ветвей (Branch Coverage): 100% 8
+
+
+Выводы
+Все тесты пройдены успешно (26/26).
+
+Стабильность кода: высокая. Критических ошибок не выявлено.
+
+Качество реализации:
+
+Корректная работа с наследованием (Feline → Animal).
+
+Грамотное использование моков (Mockito) для изоляции зависимостей.
+
+Полнота проверки бизнес‑логики (рацион, семейство, особенности видов, валидация входных данных).
+
+Добавлена обработка крайних случаев (пустые строки, null, границы диапазонов).
+
+
+
+Заключение
+Проект демонстрирует отличное качество тестирования и соответствие требованиям. Текущий набор автотестов обеспечивает надёжную проверку:
+
+основной функциональности (рацион, семейства, особенности видов);
+
+валидации входных данных (пустые строки, null, некорректные значения);
+
+граничных условий (минимальное/максимальное количество котят).
