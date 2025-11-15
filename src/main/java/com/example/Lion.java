@@ -1,26 +1,23 @@
 package com.example;
-
 import java.util.List;
-
 public class Lion {
-    private final Predator predator;
+    private final Feline feline;
     private final boolean hasMane;
-
-    public Lion(Predator predator, String sex) throws Exception {
-        this.predator = predator;
+    public Lion(Feline feline, String sex) {
+        this.feline = feline;
         if ("Самец".equals(sex)) {
             this.hasMane = true;
         } else if ("Самка".equals(sex)) {
             this.hasMane = false;
         } else {
-            throw new Exception("Используйте допустимые значения пола животного — самец или самка");
+            throw new IllegalArgumentException(
+                    "Используйте допустимые значения пола животного — самец или самка"
+            );
         }
     }
-
     public int getKittens() {
         return getKittens(1);
     }
-
     public int getKittens(int count) {
         if (count < 0) {
             throw new IllegalArgumentException("Количество котят не может быть отрицательным");
@@ -30,12 +27,10 @@ public class Lion {
         }
         return count;
     }
-
     public boolean doesHaveMane() {
         return hasMane;
     }
-
     public List<String> getFood() throws Exception {
-        return predator.eatMeat();
+        return feline.eatMeat();
     }
 }
